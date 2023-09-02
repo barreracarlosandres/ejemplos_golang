@@ -1,12 +1,11 @@
 package main
 
 func main () {
-	//cards := deck{newCard(), newCard()}
-	//cards = append(cards, "Otro datos")
-	//fmt.Println(cards)
-
 	cards := newDeck()
-	cards.print()
+	
+	hand, reamingCards := deal(cards, 6)
+	hand.print()
+	reamingCards.print()
 }
 
 func newCard() string {
