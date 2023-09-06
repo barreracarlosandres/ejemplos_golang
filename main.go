@@ -20,6 +20,9 @@ func main() {
 	}
 
 	newDeckFromFile("my_cards").print()
+
+	cards.shuffle()
+	cards.print()
 }
 
 func newCard() string {
