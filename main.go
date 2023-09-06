@@ -18,6 +18,8 @@ func main() {
 		fmt.Println("Error:", err)
 		os.Exit(1) //To exit de program
 	}
+
+	newDeckFromFile("my_cards").print()
 }
 
 func newCard() string {
