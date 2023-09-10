@@ -14,6 +14,8 @@ type deck []string
 
 func newDeck() deck {
 	cards := deck{}
+
+	// an array is named in GOLand as slice
 	cardSuits := []string{"Spades", "Diamonds", "Hearts", "Clubs"}
 	cardValues := []string{"Ace", "Two", "Three", "Four"}
 
@@ -40,6 +42,7 @@ func (d deck) toString() string {
 	return strings.Join([]string(d), ",")
 }
 
+// (d deck) is the receiver
 func (d deck) toSaveFile(filename string) error {
 	return os.WriteFile(filename, []byte(d.toString()), 0666)
 }
@@ -60,7 +63,7 @@ func (d deck) shuffle() {
 	r := rand.New(source)
 
 	for i := range d {
-		newPosition :=  r.Intn(len(d) - 1)
+		newPosition := r.Intn(len(d) - 1)
 		d[i], d[newPosition] = d[newPosition], d[i]
 	}
 }
