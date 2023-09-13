@@ -5,7 +5,43 @@ import (
 	"os"
 )
 
+/*import (
+	"fmt"
+	"os"
+)*/
+
 func main() {
+
+	//sliceExamples()
+	//structExamples()
+	mapExamples()
+}
+
+func newCard() string {
+	return "Five of Diamon"
+}
+
+func mapExamples() {
+	fmt.Println("******* map example 1 *******")
+	mapExample1()
+	fmt.Println("******* map example 2 *******")
+	mapExample2()
+	fmt.Println("******* map example 3 *******")
+	mapExample3()
+	fmt.Println("******* map example 4 *******")
+	mapExample4()
+	fmt.Println("******* map example 5 *******")
+	mapExample5()
+}
+
+func structExamples() {
+
+	//getPerson("Alex", "Perez")
+	getPersonNew("Alex", "Perez")
+
+}
+
+func sliceExamples() {
 	cards := newDeck()
 
 	hand, reamingCards := deal(cards, 6)
@@ -23,8 +59,4 @@ func main() {
 
 	cards.shuffle()
 	cards.print()
-}
-
-func newCard() string {
-	return "Five of Diamon"
 }
