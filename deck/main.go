@@ -1,4 +1,4 @@
-package main
+package deck
 
 import (
 	"fmt"
@@ -12,7 +12,7 @@ import (
 
 type deck []string
 
-func newDeck() deck {
+func NewDeck() deck {
 	cards := deck{}
 
 	// an array is named in GOLand as slice
@@ -28,26 +28,26 @@ func newDeck() deck {
 	return cards
 }
 
-func (d deck) print() {
+func (d deck) Print() {
 	for i, card := range d {
 		fmt.Println(i, card)
 	}
 }
 
-func deal(d deck, handSize int) (deck, deck) {
+func Deal(d deck, handSize int) (deck, deck) {
 	return d[:handSize], d[handSize:]
 }
 
-func (d deck) toString() string {
+func (d deck) ToString() string {
 	return strings.Join([]string(d), ",")
 }
 
 // (d deck) is the receiver
-func (d deck) toSaveFile(filename string) error {
-	return os.WriteFile(filename, []byte(d.toString()), 0666)
+func (d deck) ToSaveFile(filename string) error {
+	return os.WriteFile(filename, []byte(d.ToString()), 0666)
 }
 
-func newDeckFromFile(filename string) deck {
+func NewDeckFromFile(filename string) deck {
 	bs, err := os.ReadFile(filename)
 	if err != nil {
 		fmt.Println("Error:", err)
@@ -57,7 +57,7 @@ func newDeckFromFile(filename string) deck {
 	return deck(s)
 }
 
-func (d deck) shuffle() {
+func (d deck) Shuffle() {
 
 	source := rand.NewSource(time.Now().UnixNano())
 	r := rand.New(source)

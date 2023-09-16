@@ -1,62 +1,94 @@
 package main
 
 import (
+	"cards/deck"
+	"cards/http"
+	"cards/interfaces"
+	"cards/maps"
+	"cards/structs"
 	"fmt"
 	"os"
 )
 
-/*import (
-	"fmt"
-	"os"
-)*/
+type deckExample struct{}
+type interfaceExample struct{}
+type mapsExample struct{}
+type httpExample struct{}
+type structExample struct{}
+
+type examples interface {
+	execute()
+}
 
 func main() {
 
-	//sliceExamples()
-	//structExamples()
-	mapExamples()
+	examples := map[examples]bool{
+		deckExample{} 		: false,
+		interfaceExample{} 	: false,
+		mapsExample{} 		: false,
+		httpExample{} 		: true,
+		structExample{} 	: false,
+	}
+	for e, b := range examples {
+		if b {
+			fmt.Println("**************************")
+			e.execute()
+		}
+	}
+}
+
+func (he httpExample) execute(){
+	http.GetHttp()
 }
 
 func newCard() string {
 	return "Five of Diamon"
 }
 
-func mapExamples() {
+func (me mapsExample) execute() {
 	fmt.Println("******* map example 1 *******")
-	mapExample1()
+	maps.Example1()
 	fmt.Println("******* map example 2 *******")
-	mapExample2()
+	maps.Example2()
 	fmt.Println("******* map example 3 *******")
-	mapExample3()
+	maps.Example3()
 	fmt.Println("******* map example 4 *******")
-	mapExample4()
+	maps.Example4()
 	fmt.Println("******* map example 5 *******")
-	mapExample5()
+	maps.Example5()
 }
 
-func structExamples() {
+func (se structExample) execute() {
 
 	//getPerson("Alex", "Perez")
-	getPersonNew("Alex", "Perez")
+	structs.GetPersonNew("Alex", "Perez")
 
 }
 
-func sliceExamples() {
-	cards := newDeck()
+func (e deckExample) execute() {
+	cards :=   deck.NewDeck()
 
-	hand, reamingCards := deal(cards, 6)
-	hand.print()
-	reamingCards.print()
+	hand, reamingCards := deck.Deal(cards, 6)
+	hand.Print()
+	reamingCards.Print()
 
-	fmt.Println(cards.toString())
-	err := cards.toSaveFile("my_cards")
+	fmt.Println(cards.ToString())
+	err := cards.ToSaveFile("my_cards")
 	if err != nil {
 		fmt.Println("Error:", err)
 		os.Exit(1) //To exit de program
 	}
 
-	newDeckFromFile("my_cards").print()
+	deck.NewDeckFromFile("my_cards").Print()
 
-	cards.shuffle()
-	cards.print()
+	cards.Shuffle()
+	cards.Print()
+}
+
+func (i interfaceExample) execute() {
+	eb := interfaces.EnglishBot{}
+	sp := interfaces.SpanishBot{}
+
+	interfaces.PrintGreeting(eb)
+	interfaces.PrintGreeting(sp)
 }

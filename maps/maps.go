@@ -1,8 +1,8 @@
-package main
+package maps
 
 import "fmt"
 
-func mapExample1() {
+func Example1() {
 	// make(map[key-type]val-type).
 	colors := map[string]string{
 		"red":   "code-red",
@@ -12,23 +12,23 @@ func mapExample1() {
 	printMap(colors)
 }
 
-func mapExample2() {
+func Example2() {
 	var colors map[string]string
 	fmt.Println(colors)
 }
 
-func mapExample3() {
+func Example3() {
 	colors := make(map[string]string)
 	fmt.Println(colors)
 }
 
-func mapExample4() {
+func Example4() {
 	colors := make(map[string]string)
 	colors["white"] = "code-white"
 	fmt.Println(colors)
 }
 
-func mapExample5() {
+func Example5() {
 	colors := make(map[string]string)
 	colors["white"] = "code-white"
 	fmt.Println(colors)

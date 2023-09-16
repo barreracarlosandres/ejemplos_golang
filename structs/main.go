@@ -1,4 +1,4 @@
-package main
+package structs
 
 import "fmt"
 
@@ -18,7 +18,7 @@ func getPerson(fn string, ln string) {
 	fmt.Println(alex)
 }
 
-func getPersonNew(fn string, ln string) {
+func GetPersonNew(fn string, ln string) {
 	var alex person
 
 	/*
