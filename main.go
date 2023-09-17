@@ -29,16 +29,17 @@ func main() {
 		httpExample{} 		: true,
 		structExample{} 	: false,
 	}
-	for e, b := range examples {
-		if b {
+	for example, shuldExecute := range examples {
+		if shuldExecute {
 			fmt.Println("**************************")
-			e.execute()
+			example.execute()
 		}
 	}
 }
 
 func (he httpExample) execute(){
-	http.GetHttp()
+	fmt.Println("###### Examples of interfaces #######")
+	http.GetHttp("http://google.com")
 }
 
 func newCard() string {
