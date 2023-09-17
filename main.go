@@ -1,6 +1,7 @@
 package main
 
 import (
+	"cards/channel"
 	"cards/deck"
 	"cards/http"
 	"cards/interfaces"
@@ -15,6 +16,7 @@ type interfaceExample struct{}
 type mapsExample struct{}
 type httpExample struct{}
 type structExample struct{}
+type channelExample struct{}
 
 type examples interface {
 	execute()
@@ -23,11 +25,12 @@ type examples interface {
 func main() {
 
 	examples := map[examples]bool{
-		deckExample{} 		: false,
-		interfaceExample{} 	: false,
-		mapsExample{} 		: false,
-		httpExample{} 		: true,
-		structExample{} 	: false,
+		deckExample{}		: false,
+		interfaceExample{}	: false,
+		mapsExample{}		: false,
+		httpExample{}		: false,
+		structExample{}		: false,
+		channelExample{}	: true,
 	}
 	for example, shuldExecute := range examples {
 		if shuldExecute {
@@ -37,9 +40,15 @@ func main() {
 	}
 }
 
-func (he httpExample) execute(){
+func (ce channelExample) execute() {
+	channel.Example1()
+}
+
+func (he httpExample) execute() {
 	fmt.Println("###### Examples of interfaces #######")
-	http.GetHttp("http://google.com")
+	//http.GetHttpExample1("http://google.com")
+	//http.GetHttpExample2("http://google.com")
+	http.GetHttpExample3("http://google.com")
 }
 
 func newCard() string {
@@ -67,7 +76,7 @@ func (se structExample) execute() {
 }
 
 func (e deckExample) execute() {
-	cards :=   deck.NewDeck()
+	cards := deck.NewDeck()
 
 	hand, reamingCards := deck.Deal(cards, 6)
 	hand.Print()
