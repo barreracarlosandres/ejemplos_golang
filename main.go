@@ -6,6 +6,7 @@ import (
 	"cards/http"
 	"cards/interfaces"
 	"cards/maps"
+	"cards/mvc"
 	"cards/structs"
 	"fmt"
 	"os"
@@ -17,6 +18,7 @@ type mapsExample struct{}
 type httpExample struct{}
 type structExample struct{}
 type channelExample struct{}
+type apiRestExample struct{}
 
 type examples interface {
 	execute()
@@ -25,12 +27,13 @@ type examples interface {
 func main() {
 
 	examples := map[examples]bool{
-		deckExample{}		: false,
-		interfaceExample{}	: false,
-		mapsExample{}		: false,
-		httpExample{}		: false,
-		structExample{}		: false,
-		channelExample{}	: true,
+		deckExample{}:      false,
+		interfaceExample{}: false,
+		mapsExample{}:      false,
+		httpExample{}:      false,
+		structExample{}:    false,
+		channelExample{}:   false,
+		apiRestExample{}:   true,
 	}
 	for example, shuldExecute := range examples {
 		if shuldExecute {
@@ -38,10 +41,16 @@ func main() {
 			example.execute()
 		}
 	}
+
+}
+
+func (apie apiRestExample) execute() {
+	mvc.RunApiRest()
 }
 
 func (ce channelExample) execute() {
 	channel.Example1()
+	channel.Example2()
 }
 
 func (he httpExample) execute() {
