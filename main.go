@@ -1,6 +1,7 @@
 package main
 
 import (
+	"cards/calculator"
 	"cards/channel"
 	"cards/deck"
 	"cards/http"
@@ -19,6 +20,7 @@ type httpExample struct{}
 type structExample struct{}
 type channelExample struct{}
 type apiRestExample struct{}
+type calulatorExample struct{}
 
 type examples interface {
 	execute()
@@ -33,7 +35,8 @@ func main() {
 		httpExample{}:      false,
 		structExample{}:    false,
 		channelExample{}:   false,
-		apiRestExample{}:   true,
+		apiRestExample{}:   false,
+		calulatorExample{}: true,
 	}
 	for example, shuldExecute := range examples {
 		if shuldExecute {
@@ -41,7 +44,43 @@ func main() {
 			example.execute()
 		}
 	}
+}
 
+func (ec calulatorExample) execute() {
+
+	type Operacion interface {
+		Calcular(d calculator.Datos, c chan string)
+	}
+	
+	d := calculator.Datos{Dato1: 1, Dato2: 2}
+
+	s := calculator.Suma{}
+	r := calculator.Resta{}
+	/*s.Calcular(d)
+	r.Calcular(d)*/
+
+	oprnes := []Operacion{s, r}
+
+	c := make(chan string)
+
+	for _, o := range oprnes {
+		go o.Calcular(d, c)		
+	}
+
+	for i :=0; i < len(oprnes); i++ {
+		fmt.Println(<-c)
+	}
+
+	/*go Operacion.Calcular(s, d, c)
+	go Operacion.Calcular(r, d, c)*/
+
+	/*for i := 0; i < 2; i++ {
+		fmt.Println(<-c)
+	}*/
+
+	/*for l := range c {
+		fmt.Println(l)
+	}*/
 }
 
 func (apie apiRestExample) execute() {

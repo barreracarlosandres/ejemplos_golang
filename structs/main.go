@@ -25,7 +25,7 @@ func GetPersonNew(fn string, ln string) {
 		&variable - give me the memory address
 		*pointer  - give me the value
 	*/
-
+	
 	alex.updateLastName("newName") // can use '(&alex). or alex.'
 	alex.print()                   //paso por value
 }
