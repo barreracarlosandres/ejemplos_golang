@@ -21,7 +21,7 @@ type httpExample struct{}
 type structExample struct{}
 type channelExample struct{}
 type apiRestExample struct{}
-type calulatorExample struct{}
+type calculatorExample struct{}
 type pointerExample struct{}
 
 type examples interface {
@@ -39,10 +39,10 @@ func main() {
 		httpExample{}:      false,
 		channelExample{}:   false,
 		apiRestExample{}:   false,
-		calulatorExample{}: false,
+		calculatorExample{}: false,
 	}
-	for example, shuldExecute := range examples {
-		if shuldExecute {
+	for example, shouldExecute := range examples {
+		if shouldExecute {
 			example.execute()
 		}
 	}
@@ -52,9 +52,9 @@ func (pe pointerExample) execute() {pointers.Example()}
 
 func (se structExample) execute() {structs.Example()}
 
-func (ec calulatorExample) execute() {
+func (ec calculatorExample) execute() {
 
-	type Operacion interface {
+	type Operation interface {
 		Calcular(d *calculator.Datos, c chan string)
 	}
 	
@@ -65,7 +65,7 @@ func (ec calulatorExample) execute() {
 	/*s.Calcular(d)
 	r.Calcular(d)*/
 
-	oprnes := []Operacion{s, r}
+	oprnes := []Operation{s, r}
 
 	c := make(chan string)
 
