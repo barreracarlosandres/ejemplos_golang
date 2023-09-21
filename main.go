@@ -49,10 +49,10 @@ func main() {
 func (ec calulatorExample) execute() {
 
 	type Operacion interface {
-		Calcular(d calculator.Datos, c chan string)
+		Calcular(d *calculator.Datos, c chan string)
 	}
 	
-	d := calculator.Datos{Dato1: 1, Dato2: 2}
+	d := calculator.Datos{Dato1: 4, Dato2: 2}
 
 	s := calculator.Suma{}
 	r := calculator.Resta{}
@@ -64,7 +64,7 @@ func (ec calulatorExample) execute() {
 	c := make(chan string)
 
 	for _, o := range oprnes {
-		go o.Calcular(d, c)		
+		go o.Calcular(&d, c)
 	}
 
 	for i :=0; i < len(oprnes); i++ {
