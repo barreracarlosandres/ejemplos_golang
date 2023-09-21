@@ -8,6 +8,7 @@ import (
 	"cards/interfaces"
 	"cards/maps"
 	"cards/mvc"
+	"cards/pointers"
 	"cards/structs"
 	"fmt"
 	"os"
@@ -21,6 +22,7 @@ type structExample struct{}
 type channelExample struct{}
 type apiRestExample struct{}
 type calulatorExample struct{}
+type pointerExample struct{}
 
 type examples interface {
 	execute()
@@ -29,22 +31,26 @@ type examples interface {
 func main() {
 
 	examples := map[examples]bool{
+		pointerExample{}:   true,
+		structExample{}:    true,
 		deckExample{}:      false,
 		interfaceExample{}: false,
 		mapsExample{}:      false,
 		httpExample{}:      false,
-		structExample{}:    false,
 		channelExample{}:   false,
 		apiRestExample{}:   false,
-		calulatorExample{}: true,
+		calulatorExample{}: false,
 	}
 	for example, shuldExecute := range examples {
 		if shuldExecute {
-			fmt.Println("**************************")
 			example.execute()
 		}
 	}
 }
+
+func (pe pointerExample) execute() {pointers.Example()}
+
+func (se structExample) execute() {structs.Example()}
 
 func (ec calulatorExample) execute() {
 
@@ -116,12 +122,7 @@ func (me mapsExample) execute() {
 	maps.Example5()
 }
 
-func (se structExample) execute() {
 
-	//getPerson("Alex", "Perez")
-	structs.GetPersonNew("Alex", "Perez")
-
-}
 
 func (e deckExample) execute() {
 	cards := deck.NewDeck()

@@ -2,40 +2,64 @@ package structs
 
 import "fmt"
 
-type contactInfo struct {
-	email   string
-	zipCode int
-}
-
 type person struct {
 	firstName   string
 	lastName    string
 	contactInfo // contact contactInfo
 }
 
-func getPerson(fn string, ln string) {
-	alex := person{firstName: fn, lastName: ln}
-	fmt.Println(alex)
+type contactInfo struct {
+	email   string
+	zipCode int
 }
 
-func GetPersonNew(fn string, ln string) {
+func getPersonNew(fn string, ln string) {
+	fmt.Println("* Execute func getNewPerson")
 	var alex person
 
 	/*
 		&variable - give me the memory address
 		*pointer  - give me the value
-	*/
-	
+	*/	
 	alex.updateLastName("newName") // can use '(&alex). or alex.'
 	alex.print()                   //paso por value
 }
 
-func (p *person) updateLastName(newLastName string) {
-	//func (p person) updateLastName(lastName string) {
-	(*p).lastName = newLastName
+func (p person) updateLastName(newLastName string) {
+	fmt.Println("* Execute func updateLastName")
+	p.lastName = newLastName
 }
 
 func (p person) print() {
-	fmt.Printf("%+v", p) // print the fiel names and values
+	fmt.Println("* Execute func print")
+	fmt.Printf("The new  person is: %+v \n",p)
+}
+
+func Example() {
+	fmt.Println("------------ Struct Examples ------------")
+
+	//create new person
+	np := person{
+		firstName: "Carlos",
+		lastName:  "Barrera",
+		contactInfo: contactInfo{
+			email : "email@gmail.com",
+			zipCode: 0,
+		},
+	}
+
+	np.print()
+	np.updateLastName("Barrera 21")
+	np.print()
+
+	//create persona 2
+	var np2 person
+	np2.firstName = "Carlos"
+
+	np2.print()
+
+		//getPerson("Alex", "Perez")
+	//getPersonNew("Alex", "Perez")
+
 	fmt.Println()
 }
