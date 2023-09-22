@@ -33,9 +33,9 @@ func main() {
 	examples := map[examples]bool{
 		pointerExample{}:   true,
 		structExample{}:    true,
+		mapsExample{}:      true,
 		deckExample{}:      false,
 		interfaceExample{}: false,
-		mapsExample{}:      false,
 		httpExample{}:      false,
 		channelExample{}:   false,
 		apiRestExample{}:   false,
@@ -51,6 +51,8 @@ func main() {
 func (pe pointerExample) execute() {pointers.Example()}
 
 func (se structExample) execute() {structs.Example()}
+
+func (me mapsExample) execute() {maps.Example()}
 
 func (ec calculatorExample) execute() {
 
@@ -108,21 +110,6 @@ func (he httpExample) execute() {
 func newCard() string {
 	return "Five of Diamon"
 }
-
-func (me mapsExample) execute() {
-	fmt.Println("******* map example 1 *******")
-	maps.Example1()
-	fmt.Println("******* map example 2 *******")
-	maps.Example2()
-	fmt.Println("******* map example 3 *******")
-	maps.Example3()
-	fmt.Println("******* map example 4 *******")
-	maps.Example4()
-	fmt.Println("******* map example 5 *******")
-	maps.Example5()
-}
-
-
 
 func (e deckExample) execute() {
 	cards := deck.NewDeck()
