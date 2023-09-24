@@ -1,11 +1,11 @@
 package routes
 
 import (
+	"cards/apirest/controller"
 	"net/http"
-	"cards/api-mvc/controller"
 )
 
-func Routes () {
+func Routes() {
 	http.HandleFunc("/", controller.Home)
 	http.HandleFunc("/productos", controller.Productos)
 }

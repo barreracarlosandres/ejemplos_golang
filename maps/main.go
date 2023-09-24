@@ -2,7 +2,7 @@ package maps
 
 import "fmt"
 
-// create a empty map
+// create a empty map [key]value
 var cities = make(map[string]int)
 
 func createMap() {
@@ -22,11 +22,11 @@ func addValues() {
 	fmt.Println("* Execute func addValues")
 
 	fmt.Println("before add values in 'cities':", cities)
-	cities["cali"]   = 1
+	cities["cali"] = 1
 	cities["bogotá"] = 2
-	cities["buga"]   = 3
+	cities["buga"] = 3
 	fmt.Println("All values in 'cities':", cities)
-	fmt.Println("Value of key 'buga':", cities["buga"] )
+	fmt.Println("Value of key 'buga':", cities["buga"])
 
 	fmt.Println()
 }
@@ -42,7 +42,7 @@ func createEmptyMap() {
 func deleteValue() {
 	fmt.Println("* Execute func example5")
 
-	fmt.Println("before delete :",cities)
+	fmt.Println("before delete :", cities)
 	delete(cities, "buga")
 	fmt.Println("after delelte cities:", cities)
 
@@ -51,7 +51,7 @@ func deleteValue() {
 
 func printMap(c map[string]string) {
 	fmt.Println("* Execute func printMap")
-	for color, hex	:= range c {
+	for color, hex := range c {
 		fmt.Println("Hex code for", color, "is", hex)
 	}
 }

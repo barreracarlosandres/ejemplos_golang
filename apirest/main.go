@@ -1,7 +1,7 @@
-package mvc
+package apirest
 
 import (
-	"cards/api-mvc/routes"
+	"cards/apirest/routes"
 	"fmt"
 	"net/http"
 )

@@ -1,13 +1,14 @@
 package main
 
 import (
+	"cards/apirest"
+	"cards/apirestgin"
 	"cards/calculator"
 	"cards/channel"
 	"cards/deck"
 	"cards/http"
 	"cards/interfaces"
 	"cards/maps"
-	"cards/mvc"
 	"cards/pointers"
 	"cards/structs"
 	"fmt"
@@ -23,43 +24,61 @@ type channelExample struct{}
 type apiRestExample struct{}
 type calculatorExample struct{}
 type pointerExample struct{}
+type apiRestGinExample struct{}
 
 type examples interface {
 	execute()
 }
 
 func main() {
+	args := os.Args[1:]
 
-	examples := map[examples]bool{
-		pointerExample{}:   true,
-		structExample{}:    true,
-		mapsExample{}:      true,
-		deckExample{}:      false,
-		interfaceExample{}: false,
-		httpExample{}:      false,
-		channelExample{}:   false,
-		apiRestExample{}:   false,
-		calculatorExample{}: false,
-	}
-	for example, shouldExecute := range examples {
-		if shouldExecute {
-			example.execute()
+	if len(args) == 0 {
+
+		examples := map[examples]bool{
+			pointerExample{}:    true,
+			structExample{}:     true,
+			mapsExample{}:       true,
+			deckExample{}:       false,
+			interfaceExample{}:  false,
+			httpExample{}:       false,
+			channelExample{}:    false,
+			apiRestExample{}:    false,
+			calculatorExample{}: false,
+			apiRestGinExample{}: false,
 		}
+		for example, shouldExecute := range examples {
+			if shouldExecute {
+				example.execute()
+			}
+		}
+	} else if args[0] == "pointers" {
+		pointers.Example()
+	} else if args[0] == "apiRest" {
+		apirest.RunApiRest()
+	} else if args[0] == "apiRestGin" {
+		apirestgin.Example()
+	} else {
+		fmt.Println("Las opciones son:\n" +
+			"pointers\n" +
+			"maps",
+		)
 	}
 }
 
-func (pe pointerExample) execute() {pointers.Example()}
+func (pe pointerExample) execute() { pointers.Example() }
 
-func (se structExample) execute() {structs.Example()}
+func (se structExample) execute() { structs.Example() }
 
-func (me mapsExample) execute() {maps.Example()}
+func (me mapsExample) execute()         { maps.Example() }
+func (arge apiRestGinExample) execute() { apirestgin.Example() }
 
 func (ec calculatorExample) execute() {
 
 	type Operation interface {
 		Calcular(d *calculator.Datos, c chan string)
 	}
-	
+
 	d := calculator.Datos{Dato1: 4, Dato2: 2}
 
 	s := calculator.Suma{}
@@ -75,7 +94,7 @@ func (ec calculatorExample) execute() {
 		go o.Calcular(&d, c)
 	}
 
-	for i :=0; i < len(oprnes); i++ {
+	for i := 0; i < len(oprnes); i++ {
 		fmt.Println(<-c)
 	}
 
@@ -92,7 +111,7 @@ func (ec calculatorExample) execute() {
 }
 
 func (apie apiRestExample) execute() {
-	mvc.RunApiRest()
+	apirest.RunApiRest()
 }
 
 func (ce channelExample) execute() {
