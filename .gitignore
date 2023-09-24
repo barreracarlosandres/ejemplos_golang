@@ -40,4 +40,3 @@ _cgo_export.*
 .vscode
 coverage
 rules.md
-/.vscode/
