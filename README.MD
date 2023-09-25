@@ -4,18 +4,23 @@
 ## Ejemlos GoLang
 En cada una de las carpetas se tiene ejemplos de los temas realaciones
 
-| Example                        | Ready | Test                           |
-|--------------------------------|-------|--------------------------------|
-| [pointers](./pointers/main.go) | yes   | [yes](./pointers/main_test.go) |
-| channel                        | yes   | -o-                            |
-| maps                           | yes   | -o-                            |
-| structs                        | yes   | -o-                            |
+| Example                            | Ready | Test                           |
+|------------------------------------|-------|--------------------------------|
+| [pointers](./pointers/main.go)     | yes   | [yes](./pointers/main_test.go) |
+| channel                            | yes   | -o-                            |
+| maps                               | yes   | -o-                            |
+| structs                            | yes   | -o-                            |
+| [apiRestGin](./apirestgin/main.go) | yes   | -o-                            |
 
 # ¿Cómo ejecuto los ejemplos y test?
 
 - En la raiz del projecto ejecutar todos los ejemplos
   ```
   go run main.go
+  ```
+- Ejecutar un ejemplo así:
+  ```
+  go run main.go apiRestGin
   ```
 - Correr todos los test y vaidar la covertura
   ```
