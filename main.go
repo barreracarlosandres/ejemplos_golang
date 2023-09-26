@@ -45,7 +45,7 @@ func main() {
 			channelExample{}:    false,
 			apiRestExample{}:    false,
 			calculatorExample{}: false,
-			apiRestGinExample{}: false,
+			apiRestGinExample{}: true,
 		}
 		for example, shouldExecute := range examples {
 			if shouldExecute {
@@ -54,6 +54,8 @@ func main() {
 		}
 	} else if args[0] == "pointers" {
 		pointers.Example()
+	} else if args[0] == "structs" {
+		structs.Example()
 	} else if args[0] == "apiRest" {
 		apirest.RunApiRest()
 	} else if args[0] == "apiRestGin" {
