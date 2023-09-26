@@ -34,45 +34,32 @@ func main() {
 	args := os.Args[1:]
 
 	if len(args) == 0 {
-
-		examples := map[examples]bool{
-			pointerExample{}:    true,
-			structExample{}:     true,
-			mapsExample{}:       true,
-			deckExample{}:       false,
-			interfaceExample{}:  false,
-			httpExample{}:       false,
-			channelExample{}:    false,
-			apiRestExample{}:    false,
-			calculatorExample{}: false,
-			apiRestGinExample{}: true,
-		}
-		for example, shouldExecute := range examples {
-			if shouldExecute {
-				example.execute()
-			}
-		}
-	} else if args[0] == "pointers" {
-		pointers.Example()
-	} else if args[0] == "structs" {
-		structs.Example()
-	} else if args[0] == "apiRest" {
-		apirest.RunApiRest()
-	} else if args[0] == "apiRestGin" {
-		apirestgin.Example()
-	} else {
-		fmt.Println("Las opciones son:\n" +
-			"pointers\n" +
-			"maps",
-		)
+		message()
+		return
 	}
+
+	switch os := args[0]; os {
+	case "pointers":
+		pointers.Example()
+	case "structs":
+		structs.Example()
+	case "apiRestGin":
+		apirestgin.Example()
+	default:
+		message()
+	}
+}
+
+func message() {
+	fmt.Println("Ingresa una opción válida, ver README.MD")	
 }
 
 func (pe pointerExample) execute() { pointers.Example() }
 
 func (se structExample) execute() { structs.Example() }
 
-func (me mapsExample) execute()         { maps.Example() }
+func (me mapsExample) execute() { maps.Example() }
+
 func (arge apiRestGinExample) execute() { apirestgin.Example() }
 
 func (ec calculatorExample) execute() {
