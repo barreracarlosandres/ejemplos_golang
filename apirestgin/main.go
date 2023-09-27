@@ -1,7 +1,15 @@
 package apirestgin
 
+import (
+	"cards/apirestgin/controllers"
+
+	"github.com/gin-gonic/gin"
+)
+
 func Example() {
-	err := routes().Run("localhost:8080")
+	router := gin.Default()
+	controllers.Routes(router)
+	err := router.Run("localhost:8080")
 	if err != nil {
 		return
 	}

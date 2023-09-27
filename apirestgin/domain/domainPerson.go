@@ -1,6 +1,6 @@
-package apirestgin
+package domain
 
-type domainPerson struct {
+type Person struct {
 	UUID     string `json:"uuid"`
 	FistName string `json:"fist_name"`
 	Email    string `json:"email"`

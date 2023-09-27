@@ -1,14 +1,12 @@
-package apirestgin
+package controllers
 
 import (
+
 	"github.com/gin-gonic/gin"
 )
 
-func routes() *gin.Engine {
-	router := gin.Default()
+func Routes(router *gin.Engine) {
 	router.GET("/people", getAlbums)
 	router.POST("/people", postAlbums)
 	router.GET("/people/:id", getAlbumByID)
-
-	return router
 }
