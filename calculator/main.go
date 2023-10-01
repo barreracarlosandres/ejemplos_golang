@@ -5,28 +5,17 @@ import (
 	"time"
 )
 
-type Suma struct{}
-type Resta struct{}
+type Add struct{}
+type Subtraction struct{}
 
-
-func (s Suma) Calcular(d *Datos, c chan string) {
+func (s Add) Calculator(d *Data, c chan string) {
 	time.Sleep(2 * time.Second)
-	fmt.Println("La suma de", d.Dato1, "más", d.Dato2, "es:", (d.Dato1 + d.Dato2))
-	c <- "suma"
+	fmt.Println("The add of", d.First, "plus", d.Second, "is :", d.First+d.Second)
+	c <- "add"
 }
 
-func (s Resta) Calcular(d *Datos, c chan string) {
+func (s Subtraction) Calculator(d *Data, c chan string) {
 	time.Sleep(5 * time.Second)
-	fmt.Println("La resta de", d.Dato1, "más", d.Dato2, "es:", (d.Dato1 - d.Dato2))
-	c <- "resta"
+	fmt.Println("The subtraction of", d.First, "lest", d.Second, "is:", d.First-d.Second)
+	c <- "subtraction"
 }
-
-// hacer una func suma
-// hacer una func resta
-// crear una struct para los datos
-// crear una struct como receiver y llamar ls func igual, calcular
-// crear una interface Operaciones y llamar los métodos
-// crear una slice del tipo interface
-// hacer un ciclo para recorrer
-// adicionar threads
-// dicionar channel

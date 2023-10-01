@@ -51,7 +51,7 @@ func main() {
 }
 
 func message() {
-	fmt.Println("Ingresa una opción válida, ver README.MD")	
+	fmt.Println("Ingresa una opción válida, ver README.MD")
 }
 
 func (pe pointerExample) execute() { pointers.Example() }
@@ -65,30 +65,30 @@ func (arge apiRestGinExample) execute() { apirestgin.Example() }
 func (ec calculatorExample) execute() {
 
 	type Operation interface {
-		Calcular(d *calculator.Datos, c chan string)
+		Calculator(d *calculator.Data, c chan string)
 	}
 
-	d := calculator.Datos{Dato1: 4, Dato2: 2}
+	d := calculator.Data{First: 4, Second: 2}
 
-	s := calculator.Suma{}
-	r := calculator.Resta{}
-	/*s.Calcular(d)
-	r.Calcular(d)*/
+	s := calculator.Add{}
+	r := calculator.Subtraction{}
+	/*s.Calculator(d)
+	r.Calculator(d)*/
 
 	oprnes := []Operation{s, r}
 
 	c := make(chan string)
 
 	for _, o := range oprnes {
-		go o.Calcular(&d, c)
+		go o.Calculator(&d, c)
 	}
 
 	for i := 0; i < len(oprnes); i++ {
 		fmt.Println(<-c)
 	}
 
-	/*go Operacion.Calcular(s, d, c)
-	go Operacion.Calcular(r, d, c)*/
+	/*go Operacion.Calculator(s, d, c)
+	go Operacion.Calculator(r, d, c)*/
 
 	/*for i := 0; i < 2; i++ {
 		fmt.Println(<-c)

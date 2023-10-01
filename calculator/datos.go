@@ -1,6 +1,6 @@
 package calculator
 
-type Datos struct {
-	Dato1 int
-	Dato2 int
+type Data struct {
+	First  int
+	Second int
 }
