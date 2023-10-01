@@ -10,11 +10,11 @@ import (
 
 //TODO change slice to map [Person]uuid
 
-func getAlbums(c *gin.Context) {
+func GetAlbums(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, db.People)
 }
 
-func postAlbums(c *gin.Context) {
+func PostAlbums(c *gin.Context) {
 	var newAlbum domain.Person
 
 	if err := c.BindJSON(&newAlbum); err != nil {
@@ -25,7 +25,27 @@ func postAlbums(c *gin.Context) {
 	c.IndentedJSON(http.StatusCreated, newAlbum)
 }
 
-func getAlbumByID(c *gin.Context) {
+func DeleteAlbums(c *gin.Context) {
+	id := c.Param("id")
+
+	posToDelete := 0
+
+	for index, a := range db.People {
+		if a.UUID == id {
+			posToDelete = index
+			return
+		}
+	}	
+
+	db.People = deleteElement(db.People, posToDelete)
+	c.IndentedJSON(http.StatusCreated, db.People )
+}
+
+func deleteElement(slice []domain.Person, index int) []domain.Person {
+	return append(slice[:index], slice[index+1:]...)
+ }
+
+func GetAlbumByID(c *gin.Context) {
 	id := c.Param("id")
 
 	for _, a := range db.People {
