@@ -2,13 +2,13 @@ package maps
 
 import "fmt"
 
-// create a empty map [key]value
+// create an empty map [key]value
 var cities = make(map[string]int)
 
 func createMap() {
 	fmt.Println("* Execute func createMap")
 
-	// createa a map with values
+	// create a map with values
 	colors := map[string]string{
 		"red":   "code-red",
 		"green": "code-green",

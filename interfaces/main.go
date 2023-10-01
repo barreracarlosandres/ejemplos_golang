@@ -6,17 +6,26 @@ type bot interface {
 	getGreeting() string
 }
 
-type EnglishBot struct{}
-type SpanishBot struct{}
+type englishBot struct{}
+type spanishBot struct{}
 
-func (eb EnglishBot) getGreeting() string {
+func (eb englishBot) getGreeting() string {
 	return "englishBot"
 }
 
-func (eb SpanishBot) getGreeting() string {
+func (eb spanishBot) getGreeting() string {
 	return "spanishBot"
 }
 
-func PrintGreeting(e bot) {
+func printGreeting(e bot) {
 	fmt.Println(e.getGreeting())
+}
+
+func Example() {
+	fmt.Println("------------ Interfaces Examples ------------")
+	eb := englishBot{}
+	sp := spanishBot{}
+
+	printGreeting(eb)
+	printGreeting(sp)
 }

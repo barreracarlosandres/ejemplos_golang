@@ -38,13 +38,17 @@ func main() {
 		return
 	}
 
-	switch os := args[0]; os {
+	switch example := args[0]; example {
 	case "pointers":
 		pointers.Example()
 	case "structs":
 		structs.Example()
 	case "apiRestGin":
 		apirestgin.Example()
+	case "map":
+		maps.Example()
+	case "interfaces":
+		interfaces.Example()
 	default:
 		message()
 	}
@@ -61,6 +65,8 @@ func (se structExample) execute() { structs.Example() }
 func (me mapsExample) execute() { maps.Example() }
 
 func (arge apiRestGinExample) execute() { apirestgin.Example() }
+
+func (arge interfaceExample) execute() { interfaces.Example() }
 
 func (ec calculatorExample) execute() {
 
@@ -137,12 +143,4 @@ func (e deckExample) execute() {
 
 	cards.Shuffle()
 	cards.Print()
-}
-
-func (i interfaceExample) execute() {
-	eb := interfaces.EnglishBot{}
-	sp := interfaces.SpanishBot{}
-
-	interfaces.PrintGreeting(eb)
-	interfaces.PrintGreeting(sp)
 }

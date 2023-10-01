@@ -3,21 +3,29 @@
 
 ## Ejemplos GoLang
 
-En cada una de las carpetas se tiene ejemplos de los temas realaciones y sus test
-- Ejemplo de [punteros](./pointers/main.go) - [test](./pointers/main_test.go)
+En cada una de las carpetas se tiene ejemplos de los temas correspondientes
+- [punteros](./pointers/main.go) - [test](./pointers/main_test.go)
   ```shell
   go run main.go pointers
   ```
   ```shell
   go test -coverpkg=./... pointers/main_test.go
   ```
-  - Ejemplo de [api Rest con Gin](./apirestgin/main.go)
+  - [api Rest con Gin](./apirestgin/main.go)
   ```shell
   go run main.go apiRestGin
   ```
-  - Ejemplo de [structs](./structs/main.go)
+  - [structs](./structs/main.go)
   ```shell
   go run main.go structs
+  ```
+  - [maps](./maps/main.go)
+  ```shell
+  go run main.go map
+  ```
+  - [interfaces](./interfaces/main.go)
+  ```shell
+  go run main.go interfaces
   ```
 
 Nota: Estaré ajustando los ejemplos y adicionando test
