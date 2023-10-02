@@ -45,6 +45,8 @@ func main() {
 		structs.Example()
 	case "apiRestGin":
 		apirestgin.Example()
+	case "apiRest":
+		apirest.Example()
 	case "map":
 		maps.Example()
 	case "interfaces":
@@ -67,6 +69,10 @@ func (me mapsExample) execute() { maps.Example() }
 func (arge apiRestGinExample) execute() { apirestgin.Example() }
 
 func (arge interfaceExample) execute() { interfaces.Example() }
+
+func (apie apiRestExample) execute() {
+	apirest.Example()
+}
 
 func (ec calculatorExample) execute() {
 
@@ -103,10 +109,6 @@ func (ec calculatorExample) execute() {
 	/*for l := range c {
 		fmt.Println(l)
 	}*/
-}
-
-func (apie apiRestExample) execute() {
-	apirest.RunApiRest()
 }
 
 func (ce channelExample) execute() {

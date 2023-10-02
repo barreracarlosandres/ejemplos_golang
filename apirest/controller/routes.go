@@ -5,10 +5,16 @@ import (
 	"net/http"
 )
 
-func Home (w http.ResponseWriter, r *http.Request) {
+type product struct {
+	ID   int
+	name string
+}
+
+func Home(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "Hola mundo desde controller en home")
 }
 
-func Productos (w http.ResponseWriter, r *http.Request) {
+func Products(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, product{ID: 1, name: "prueba"})
 	fmt.Fprintln(w, "Hola mundo desde controller con productos")
 }

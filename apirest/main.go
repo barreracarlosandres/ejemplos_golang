@@ -6,8 +6,8 @@ import (
 	"net/http"
 )
 
-func RunApiRest() {
+func Example() {
 	routes.Routes()
 	fmt.Println("Running mvc")
-	http.ListenAndServe(":3000", nil)
+	http.ListenAndServe(":8080", nil)
 }

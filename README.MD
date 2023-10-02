@@ -14,6 +14,10 @@ En cada una de las carpetas se tiene ejemplos de los temas correspondientes
   - [api Rest con Gin](./apirestgin/main.go)
   ```shell
   go run main.go apiRestGin
+  ```  
+  - [api Rest](./apirest/main.go)
+  ```shell
+  go run main.go apiRest
   ```
   - [structs](./structs/main.go)
   ```shell

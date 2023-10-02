@@ -7,5 +7,5 @@ import (
 
 func Routes() {
 	http.HandleFunc("/", controller.Home)
-	http.HandleFunc("/productos", controller.Productos)
+	http.HandleFunc("/products", controller.Products)
 }
