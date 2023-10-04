@@ -70,9 +70,7 @@ func (arge apiRestGinExample) execute() { apirestgin.Example() }
 
 func (arge interfaceExample) execute() { interfaces.Example() }
 
-func (apie apiRestExample) execute() {
-	apirest.Example()
-}
+func (apie apiRestExample) execute() { apirest.Example() }
 
 func (ec calculatorExample) execute() {
 
