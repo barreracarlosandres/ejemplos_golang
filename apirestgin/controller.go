@@ -6,52 +6,34 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//TODO change slice to map [Person]uuid
-
-func handleGetPeople(c *gin.Context) {
-	c.IndentedJSON(http.StatusOK, StoragePeople)
+func handleGetAll(c *gin.Context) {
+	c.IndentedJSON(http.StatusOK, *getAll())
 }
 
 func handleAddPerson(c *gin.Context) {
 	var newAlbum DomainPerson
 
 	if err := c.BindJSON(&newAlbum); err != nil {
+		c.IndentedJSON(http.StatusBadRequest, Message{Msg: "Don't add person"})
 		return
 	}
 
-	StoragePeople = append(StoragePeople, newAlbum)
+	add(newAlbum)
 	c.IndentedJSON(http.StatusCreated, newAlbum)
 }
 
 func handleDeletePerson(c *gin.Context) {
-	id := c.Param("id")
-
-	posToDelete := 0
-
-	for index, a := range StoragePeople {
-		if a.UUID == id {
-			posToDelete = index
-			return
-		}
-	}
-
-	StoragePeople = deleteElement(StoragePeople, posToDelete)
-	c.IndentedJSON(http.StatusCreated, StoragePeople)
-}
-
-func deleteElement(slice []DomainPerson, index int) []DomainPerson {
-	return append(slice[:index], slice[index+1:]...)
+	c.IndentedJSON(http.StatusOK, delete(&StoragePeople, c.Param("uuid")))
 }
 
 func handleGetPersonByID(c *gin.Context) {
 	uuid := c.Param("uuid")
 
-	for _, a := range StoragePeople {
-		if a.UUID == uuid {
-			c.IndentedJSON(http.StatusOK, a)
-			return
-		}
+	var person = getPersonByUUID(&StoragePeople, uuid)
+	if person.UUID != "" {
+		c.IndentedJSON(http.StatusOK, person)
+		return
 	}
 
-	c.IndentedJSON(http.StatusNotFound, gin.H{"message": "Albun no encontrado"})
+	c.IndentedJSON(http.StatusNotFound, Message{Msg: "not found UUID " + uuid})
 }

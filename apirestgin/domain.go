@@ -6,3 +6,7 @@ type DomainPerson struct {
 	Email     string `json:"email"`
 	Ege       int    `json:"ege"`
 }
+
+type Message struct {
+	Msg string `json:"message"`
+}

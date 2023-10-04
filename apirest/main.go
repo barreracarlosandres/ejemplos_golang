@@ -25,7 +25,7 @@ func seedAccounts(s Storage) {
 	seedAccount(s, "anthony", "GG", "hunter88888")
 }
 
-func main() {
+func Example() {
 	seed := flag.Bool("seed", false, "seed the db")
 	flag.Parse()
 

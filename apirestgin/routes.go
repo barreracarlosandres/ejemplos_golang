@@ -6,9 +6,8 @@ import (
 
 func configRoutes(router *gin.Engine) {
 
-	router.GET("/person", handleGetPeople)
+	router.GET("/person", handleGetAll)
 	router.POST("/person", handleAddPerson)
-	router.DELETE("/person", handleDeletePerson)
+	router.DELETE("/person/:uuid", handleDeletePerson)
 	router.GET("/person/:uuid", handleGetPersonByID)
-
 }
